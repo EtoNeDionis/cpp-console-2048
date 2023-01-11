@@ -8,8 +8,7 @@
 #include <vector>
 
 using namespace std;
-
-#include "game.h"
+#include "./models/game.h"
 
 int main() {
 	Game game;

@@ -1,19 +1,11 @@
-static const int MAPSIZE = 4;
-static const int TOTALGOAL = 2048;
-int getRandomInt(int min, int max) {
-	random_device rd;   // obtain a random number from hardware
-	mt19937 gen(rd());  // seed the generator
-	uniform_int_distribution<> distr(min, max);  // define the range
-	int x = distr(gen);
-	return x;
-}
-
 #include "board.h"
 
 class Game {
 private:
 	char inputCh;
 	bool skipTurn;
+	int MAPSIZE;
+	int TOTALGOAL;
 
 	void save() {
 		vector<int> map;
@@ -156,6 +148,8 @@ public:
 		this->hasWon = false;
 		this->hasEnded = false;
 		this->board = Board();
+		this->MAPSIZE = GameOptions::MAPSIZE;
+		this->TOTALGOAL = GameOptions::TOTALGOAL;
 	}
 
 	void playGame() {

@@ -1,11 +1,20 @@
-#include "cell.h"
+#include "./cell.h"
+
 class Board {
 private:
+	int MAPSIZE = GameOptions::MAPSIZE;
 public:
-	Cell cells[MAPSIZE][MAPSIZE];
+	Cell cells[GameOptions::MAPSIZE][GameOptions::MAPSIZE];
 	int score;
 
-	Board() { this->score = 0; }
+	Board() { 
+		this->score = 0; 
+		this->MAPSIZE = GameOptions::MAPSIZE;
+	}
+
+	~Board() {
+		//delete[] this->cells;
+	}
 
 	void printCells() {
 		system("cls");
@@ -30,8 +39,8 @@ public:
 
 	pair<int, int> getRandomCoords() {
 
-		int x = getRandomInt(0, MAPSIZE - 1);
-		int y = getRandomInt(0, MAPSIZE - 1);
+		int x = Util::getRandomInt(0, MAPSIZE - 1);
+		int y = Util::getRandomInt(0, MAPSIZE - 1);
 
 		return make_pair(x, y);
 	}
@@ -44,7 +53,7 @@ public:
 			p = getRandomCoords();
 		}
 
-		int randomNum = getRandomInt(0, 3);  //[0,3]
+		int randomNum = Util::getRandomInt(0, 3);  //[0,3]
 		cells[p.first][p.second].value = randomNum == 0 ? 4 : 2;
 	}
 
